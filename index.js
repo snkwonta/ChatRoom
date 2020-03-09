@@ -73,9 +73,9 @@ io.sockets.on('connection', function(socket){
     }
     function updateUsernames2(){
         io.emit('get users1', users);
-        for(i=0; i<messages.length; i++){
-            socket.emit('chat message', messages[i]);
-        } 
+        // for(i=0; i<messages.length; i++){
+        //     socket.emit('chat message', messages[i]);
+        // } 
     }
 
     socket.on('chat message', function(msg){
