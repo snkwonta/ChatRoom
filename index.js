@@ -35,7 +35,7 @@ io.sockets.on('connection', function(socket){
     socket.on('disconnect', function(data){
         if(!socket.username) return;
         users.splice(users.indexOf(socket.username), 1)
-        updateUsernames();
+        updateUsernames2();
         connections.splice(connections.indexOf(socket), 1);
         console.log('Disconnected: %s sockets connected', connections.length)
     });
@@ -48,6 +48,7 @@ io.sockets.on('connection', function(socket){
         
         //console.log(test);
         users.push(socket.username);
+        console.log(users);
         clients.push(socket.username);
         updateUsernames();
 
@@ -58,10 +59,6 @@ io.sockets.on('connection', function(socket){
                 io.emit('chat message', "your username has been changed to " + mesg);
                 test[socket.id].username = mesg;
                 updateUsernames1();
-            } else if(`${msg}`.includes('/nickcolor')){
-                //change mesg color
-                mesg.css
-                console.log('changing color');
             }
         });
     });
@@ -71,9 +68,14 @@ io.sockets.on('connection', function(socket){
             socket.emit('chat message', messages[i]);
         } 
     }
-
     function updateUsernames1(){
         io.emit('get users', test);
+    }
+    function updateUsernames2(){
+        io.emit('get users1', users);
+        for(i=0; i<messages.length; i++){
+            socket.emit('chat message', messages[i]);
+        } 
     }
 
     socket.on('chat message', function(msg){
