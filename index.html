@@ -81,6 +81,19 @@
 
                 
               });
+
+              socket.on('get users1', function(data){
+                var html = '';
+                for(i=0; i<data.length; i++){
+                  data.pop[i];
+                  //socket.emit('chat message', data);
+                  //socket.emit('chat message', socket.id);
+                  html += '<li class="list-group-item">'+ data[i] +'</li>';
+
+                }
+                $users.html(html);
+                
+              });
               //<p>Hello</p>
 
               socket.emit('new user', $username.val(), function(msg){});
