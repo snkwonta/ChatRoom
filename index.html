@@ -24,7 +24,7 @@
   <body>
 
     <div class="container">
-      <!-- <p id="yourname">You are: </p> -->
+      <p id="yourname">You are: </p>
 
       <div id="userFormArea" class="row">
         <div class="col-md-12"></div>
@@ -72,29 +72,20 @@
                 for(user in data){
                   console.log(user);
                   html += '<li class="list-group-item">' + data[user].username + '</li>';
-
-
                 }
-                $users.html(html);
-                // var username1 = document.getElementsByTagName("p")[0].innerHTML="Your usernsmer isody";
-                // username1 +=  '<li class="list-group1-item">' + data[user].username + '</li>';
-
-                
+                $users.html(html); 
+                $("p").html("You are: " + data[socket.id].username);
               });
+              
 
               socket.on('get users1', function(data){
                 var html = '';
                 for(i=0; i<data.length; i++){
-                  data.pop[i];
-                  //socket.emit('chat message', data);
-                  //socket.emit('chat message', socket.id);
                   html += '<li class="list-group-item">'+ data[i] +'</li>';
-
                 }
                 $users.html(html);
                 
               });
-              //<p>Hello</p>
 
               socket.emit('new user', $username.val(), function(msg){});
               
